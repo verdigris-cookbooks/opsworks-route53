@@ -46,6 +46,7 @@ route53_record "create a record" do
   name      "#{node[:opsworks][:instance][:hostname]}.#{domain}"
   value     node[:opsworks][:instance][:private_ip]
   type      "A"
+  ttl       node[:opsworks][:route53][:ttl]
   zone_id   z_id
   overwrite true
   action    :create

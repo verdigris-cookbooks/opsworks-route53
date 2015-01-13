@@ -24,6 +24,7 @@ OpsWorks instances.
 |:---------------------------------------------------------------------------|:-------:|:----------------------------------------------------------------------------------------------------------------------------------|---------|
 | `[:opsworks][:route53][:domainname]` or `[:opsworks][:stack][:domainname]` | String  | Domain name that will be appended to your hostname                                                                                |  `nil`  |
 | `[:opsworks][:route53][:prepend_stack_name]`                               | Boolean | If `true`, prepends a slugified version of your OpsWorks stack name to the domain name (e.g. `OpsWorks Stack` → `opsworks-stack`) |  `true` |
+| `[:opsworks][:route53][:ttl]`                                              | Integer | Resource record cache time to live (TTL) in seconds                                                                               |  `300`  |
 | `[:opsworks][:route53][:zone_id]`                                          | String  | ID string of your Route 53 Hosted Zone                                                                                            |  `nil`  |
 
 ## Recipes

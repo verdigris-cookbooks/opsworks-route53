@@ -28,25 +28,17 @@
 
 include_recipe "route53"
 
-z_id = node[:opsworks][:route53][:zone_id]
-domain = node[:opsworks][:route53][:domainname] || node[:opsworks][:stack][:domainname]
-subdomain = node[:opsworks][:stack][:name].downcase.strip.gsub(' ', '-').gsub(/[^\w]/, '')
+z_id = node[:opsworks_route53][:zone_id]
+domain = node[:opsworks_route53][:domainname]
+subdomain = node[:opsworks][:stack][:name].downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '-')
 
-unless z_id
-  Chef::Application.fatal! "Cannot set zone record sets without zone ID."
-end
-
-unless domain
-  Chef::Application.fatal! "Domain attribute must be set."
-end
-
-domain = node[:opsworks][:route53][:prepend_stack_name] ? "#{subdomain}.#{domain}" : domain
+domain = node[:opsworks_route53][:prepend_stack_name] ? "#{subdomain}.#{domain}" : domain
 
 route53_record "create a record" do
   name      "#{node[:opsworks][:instance][:hostname]}.#{domain}"
   value     node[:opsworks][:instance][:private_ip]
   type      "A"
-  ttl       node[:opsworks][:route53][:ttl]
+  ttl       node[:opsworks_route53][:ttl]
   zone_id   z_id
   overwrite true
   action    :create

@@ -1,5 +1,7 @@
 # opsworks_route53
 
+[![Build Status](https://travis-ci.org/verdigris-cookbooks/opsworks-route53.svg?branch=master)](https://travis-ci.org/verdigris-cookbooks/opsworks-route53)
+
 This is a cookbook for automatically configuring Amazon's [Route 53](http://aws.amazon.com/route53)
 DNS service from instance hostname. It will use the IAM role assigned to your
 OpsWorks instances.
